@@ -10,13 +10,24 @@ public class Calc {
 
         final String divideSign = isPlus ? "\\+" : "-";
 
-        String[] expBits = exp.split(" " + divideSign + " ");
+        String[] expBits = exp.split(" ");
+        final String sign = expBits[1];
+
+
         int num1 = Integer.parseInt(expBits[0]);
-        int num2 = Integer.parseInt(expBits[1]);
+        int num2 = Integer.parseInt(expBits[2]);
 
-        if(isPlus) return num1 + num2;
-        else return num1 - num2;
-
+        final int rs = switch (sign) {
+            case "+":
+                yield num1 + num2;
+            case "-":
+                yield num1 - num2;
+            case "*":
+                yield num1 * num2;
+            default:
+                yield num1 / num2;
+        };
+        return rs;
 
     }
 }
