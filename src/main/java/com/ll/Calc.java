@@ -2,26 +2,21 @@ package com.ll;
 
 public class Calc {
     public static int run(String exp) {
-        if(exp.isBlank()){return 0;}
-        if(exp.contains("-")){
-            return 0;
-        }
-        //ex
-        String[] exps = exp.split("\\+");
+        if (exp.isBlank()) return 0;
 
-        int num1 = Integer.parseInt(exps[0]);
-        int num2 = Integer.parseInt(exps[1]);
+        final boolean isPlus = exp.contains("+");
+        final boolean isMinus = !isPlus;
 
-        return num1 + num2;
 
-//        if(exp.contains("10+20")){
-//            return 30;
-//        }
-//        if(exp.contains("10+30")){
-//            return 40;
-//        }
-//        if(exp.contains("10+40")){
-//            return 50;
-//        }
+        final String divideSign = isPlus ? "\\+" : "-";
+
+        String[] expBits = exp.split(" " + divideSign + " ");
+        int num1 = Integer.parseInt(expBits[0]);
+        int num2 = Integer.parseInt(expBits[1]);
+
+        if(isPlus) return num1 + num2;
+        else return num1 - num2;
+
+
     }
 }
